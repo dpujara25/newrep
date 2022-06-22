@@ -1,4 +1,5 @@
 resource "aws_api_gateway_rest_api" "Oak9SampleAPIGateway" {
+  # oak9: aws_api_gateway_rest_api.policy is not configured
   name        = var.apiGatewayName
   description = "API Gateway invoking Oak9SampleFunction lambda function"
 }
@@ -11,6 +12,7 @@ resource "aws_api_gateway_resource" "proxy" {
 }
 
 resource "aws_api_gateway_method" "proxy" {
+   # oak9: aws_api_gateway_method.authorizer_id is not configured
    rest_api_id   = aws_api_gateway_rest_api.Oak9SampleAPIGateway.id
    resource_id   = aws_api_gateway_resource.proxy.id
    http_method   = "ANY"
@@ -28,6 +30,7 @@ resource "aws_api_gateway_integration" "lambda" {
 }
 
 resource "aws_api_gateway_deployment" "Oak9SampleAPIGateway_deployment" {
+   # oak9: StageDescription.MethodSettings.HttpMethod is not configured
    depends_on = [
      aws_api_gateway_integration.lambda,
      aws_api_gateway_integration.lambda_root,
