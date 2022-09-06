@@ -38,6 +38,7 @@ resource "aws_lambda_function" "Oak9SampleFunction" {
 
 
 resource "aws_lambda_permission" "apigw" {
+   # oak9: aws_lambda_permission.principal is not configured
    statement_id  = "AllowAPIGatewayInvoke"
    action        = "lambda:InvokeFunction"
    function_name = aws_lambda_function.Oak9SampleFunction.function_name
